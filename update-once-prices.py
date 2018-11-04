@@ -48,6 +48,7 @@ def process_all_worksheet_prods():
             assert len(ids) == 1
             for prod in odoo_prod:
                 if once_prod.list - prod.lst_price > 0.01:
+                    print
                     print u'{:.2f} %  [{}] {}'.format(
                             ((once_prod.list - prod.lst_price)/once_prod.list) * 100,
                             once_prod.code,
@@ -58,7 +59,7 @@ def process_all_worksheet_prods():
                 prod.lst_price = once_prod.list
                 prod.standard_price = once_prod.cost
                 prod.name = once_prod.name
-                prod.cost_method = 'real'
+                prod.cost_method = 'standard'
                 prod.sale_ok = True
         else:
             # no está en odoo, lo agregamos
@@ -99,5 +100,3 @@ def list_once_worksheet():
 process_all_worksheet_prods()
 #list_categ()
 #list_odoo_products()
-
-
